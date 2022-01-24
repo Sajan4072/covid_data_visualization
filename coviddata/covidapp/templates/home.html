@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19</title>
+
+</head>
+
+<body>
+    <table border="1" align="center" width="800">
+        <thead>
+            <tr>
+                <th>State</th>
+                <th>
+                    Total Cases
+                </th>
+                <th>
+                    Active
+                </th>
+                <th>
+                    Confirmed
+                </th>
+                <th>
+                    Deaths
+                </th>
+                <th>
+                    Recovered
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in data.statewise %}
+            <tr>
+                <td>{{data.state}}</td>
+                <td>{{data.confirmed}}</td>
+                <td>{{data.active}}</td>
+                <td>{{data.confirmed}}</td>
+                <td>{{data.deaths}}</td>
+                <td>{{data.recovered}}</td>
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+
+    </table>
+
+
+
+
+
+
+</body>
+
+</html>
