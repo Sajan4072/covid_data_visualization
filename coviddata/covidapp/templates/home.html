@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>COVID-19</title>
 
 </head>
@@ -48,6 +48,45 @@
         </tbody>
 
     </table>
+    <!--barchart-->
+    <div>
+        <canvas id="mychart">
+
+        </canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript">
+        //safe because django by default shows any data in decode form 
+        const labels = {
+            {
+                labels | safe
+            }
+        };
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'My First dataset',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: {
+                    {
+                        chartdata | safe
+                    }
+                },
+            }]
+        };
+
+
+        const config = {
+            type: 'bar',
+            data,
+            options: {}
+        };
+
+        var myChart = new Chart(document.getElementById('myChart'), config);
+    </script>
+
 
 
 

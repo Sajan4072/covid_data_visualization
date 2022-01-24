@@ -9,4 +9,13 @@ def home(request):
     url="https://api.covid19india.org/data.json"
     res=urllib.request.urlopen(url)
     data=json.loads(res.read())
-    return render(request,'home.html',{'data':data})
+
+    # passing to chartjs scripts
+    labels=[]
+    chartdata=[]
+    for state in data['statewise']:
+        labels.append(state['state'])
+        chartdata.append(state['confirmed'])
+
+
+    return render(request,'home.html',{'data':data,'labels':labels,'chartdata':chartdata})
