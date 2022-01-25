@@ -14,9 +14,7 @@
         <thead>
             <tr>
                 <th>State</th>
-                <th>
-                    Total Cases
-                </th>
+
                 <th>
                     Active
                 </th>
@@ -33,14 +31,14 @@
             </tr>
         </thead>
         <tbody>
-            {% for data in data.statewise %}
+            {% for state in data.statewise %}
             <tr>
-                <td>{{data.state}}</td>
-                <td>{{data.confirmed}}</td>
-                <td>{{data.active}}</td>
-                <td>{{data.confirmed}}</td>
-                <td>{{data.deaths}}</td>
-                <td>{{data.recovered}}</td>
+                <td>{{state.state}}</td>
+
+                <td>{{state.active}}</td>
+                <td>{{state.confirmed}}</td>
+                <td>{{state.deaths}}</td>
+                <td>{{state.recovered}}</td>
             </tr>
             {% endfor %}
 
@@ -50,18 +48,14 @@
     </table>
     <!--barchart-->
     <div>
-        <canvas id="mychart">
+        <canvas id='myChart'>
 
         </canvas>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script type="text/javascript">
-        //safe because django by default shows any data in decode form 
-        const labels = {
-            {
-                labels | safe
-            }
-        };
+
+    <script>
+        const labels = {{labels|safe}};
 
         const data = {
             labels: labels,
@@ -69,13 +63,9 @@
                 label: 'My First dataset',
                 backgroundColor: 'rgb(255, 99, 132)',
                 borderColor: 'rgb(255, 99, 132)',
-                data: {
-                    {
-                        chartdata | safe
-                    }
-                },
-            }]
-        };
+                data: {{chartdata|safe}},
+                       }]
+                    };
 
 
         const config = {
@@ -84,7 +74,9 @@
             options: {}
         };
 
-        var myChart = new Chart(document.getElementById('myChart'), config);
+        var myChart = new Chart(document.getElementById('myChart'),
+            config
+            );
     </script>
 
 
